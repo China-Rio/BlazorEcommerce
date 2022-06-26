@@ -10,6 +10,12 @@
         }
         public List<Product> Products { get; set; } = new List<Product>();
 
+        public async Task<ServiceResponse<Product>> GetProduct(int productId)
+        {
+            var result = await http.GetFromJsonAsync<ServiceResponse<Product>>($"api/Product/{productId}");
+            return result;
+        }
+
         public async Task GetProducts()
         {
             var result = await http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/Product");
